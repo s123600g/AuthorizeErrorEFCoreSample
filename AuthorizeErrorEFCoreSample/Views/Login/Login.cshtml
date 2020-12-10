@@ -1,0 +1,38 @@
+﻿@model LoginViewModel;
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="MainArea" class="container">
+    <form method="post" class="form-login" asp-controller="Login" asp-action="Login">
+        
+        <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+        <label for="account" class="sr-only">帳號</label>
+        <input id="account"
+               type="text"
+               class="form-control mb-2"
+               placeholder="帳號"
+               asp-for="account"
+               autofocus />
+        <span asp-validation-for="account" class="text-danger"></span>
+        <div class="form-group">
+            <label for="pwd" class="sr-only">密碼</label>
+            <input id="pwd"
+                   type="password"
+                   class="form-control mb-2"
+                   asp-for="pwd"
+                   placeholder="密碼" />
+            <span asp-validation-for="pwd" class="text-danger"></span>
+        </div>
+
+        @if (ViewData["VerifyFailed"].ToString() == "Y")
+        {
+            <span class="text-danger">登入驗證失敗，請確認帳號密碼是否無誤</span>
+        }
+        <button class="btn btn-lg btn-primary btn-block"
+                type="submit">
+            登入
+        </button>
+    </form>
+</div>
